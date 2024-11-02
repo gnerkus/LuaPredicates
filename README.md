@@ -1,5 +1,7 @@
 # LuaPredicates #
 
+<a href="https://www.nuget.org/packages/Nanotome.LuaPredicates"><img src="https://img.shields.io/nuget/v/Nanotome.LuaPredicates.svg" alt="NuGet Version" /></a>
+
 [LuaPredicates]: https://github.com/gnerkus/LuaPredicates
 [MIT License]: https://opensource.org/licenses/MIT
 
