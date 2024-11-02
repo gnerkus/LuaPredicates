@@ -1,25 +1,52 @@
+using NLua;
+
 namespace LuaPredicates.Test;
 
 public class LuaPredicatesTest
 {
-    private class Person
+    private record Dimensions
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
-    private class PersonOneName
+    private record Measures
     {
-        public string FullName { get; set; }
+        public int Area { get; set; }
     }
     
     [Fact]
     public void NullInputTest()
     {
-        var luaPredicate = new LuaPredicate<Person, PersonOneName>();
+        var luaPredicate = new LuaPredicate<Dimensions, Measures>();
         Assert.Throws<ArgumentNullException>(() =>
         {
             var result = luaPredicate.GetFunction(null);
         });
+    }
+
+    [Fact]
+    public void IntegerResultTest()
+    {
+        var luaPredicate = new LuaPredicate<Dimensions, long>();
+        var state = new Lua();
+        state.DoString("""
+                       
+                       		function Calculate (dim)
+                       		    return dim.Width * dim.Height
+                       		end
+                       		
+                       """);
+        var func = luaPredicate.GetFunction(state);
+        var records = new List<Dimensions>
+        {
+            new ()
+            {
+                Width = 10,
+                Height = 10
+            }
+        };
+        var areas = records.Select(func).ToList();
+        Assert.Equal(100, areas[0]);
     }
 }
