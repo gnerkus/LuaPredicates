@@ -32,7 +32,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore /p:Version=$VERSION
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --configuration Release --no-build --verbosity normal
       - name: pack nuget packages
         run: dotnet pack --configuration Release --output nupkgs --no-restore --no-build /p:PackageVersion=$VERSION
       - name: upload nuget package
