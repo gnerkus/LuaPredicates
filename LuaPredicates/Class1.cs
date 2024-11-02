@@ -4,7 +4,7 @@ namespace LuaPredicates
 {
     public class Class1
     {
-        public void TestParse()
+        public int Parse()
         {
             var state = new Lua();
             state.DoString("""
@@ -19,10 +19,10 @@ namespace LuaPredicates
                            		
                            """);
             var scriptFunc = state["ScriptFunc"] as LuaFunction;
-            var res = (int)scriptFunc.Call(3, 5).First();
+            var res = (int)(long)scriptFunc.Call(3, 5).First();
             // LuaFunction.Call will also return a array of objects, since a Lua function
             // can return multiple values
-            Console.WriteLine(res);
+            return res;
         }
     }
 }
