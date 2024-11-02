@@ -9,7 +9,7 @@
         <Version>1.0.2</Version>
         <Authors>Nanotome</Authors>
         <Product>LuaPredicates</Product>
-        <Description>Parse collections in .NET with predicates written in Lua.</Description>
+        <Description>Parse collections in .NET with functions written in Lua.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/gnerkus/LuaPredicates</RepositoryUrl>
         <PackageTags>lua, luapredicates, scripting</PackageTags>
