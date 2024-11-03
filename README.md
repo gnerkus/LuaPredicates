@@ -16,6 +16,51 @@ in the [Package Manager Console](http://docs.nuget.org/consume/package-manager-c
 PM> Install-Package LuaPredicates
 ```
 
+## Usage ##
+
+Given a record in the system:
+```csharp
+private record Dimensions
+{
+    public int Width { set; }
+    public int Height { set; }
+}
+```
+
+We can transform a collection of `Dimensions` objects into a collection of `long` expressing 
+the area of each `Dimensions` object:
+
+```csharp
+using LuaPredicates;
+
+namespace Test;
+
+public class Program 
+{
+    public static void Main(string[] args) 
+    {
+        var luaPredicate = new LuaPredicate<Dimensions, long>();
+        var func = luaPredicate.ReadFromString(
+            """
+                function Calculate (dim)
+                    return dim.Width * dim.Height
+                end
+           """
+        );
+        var records = new List<Dimensions>
+        {
+            new ()
+            {
+                Width = 10,
+                Height = 10
+            }
+        };
+        var areas = records.Select(func).ToList();
+        Console.WriteLine(areas[0]); // 100
+    }
+}
+```
+
 ## License ##
 
 The library is released under terms of the [MIT License]:

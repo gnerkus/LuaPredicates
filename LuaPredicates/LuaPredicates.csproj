@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Nanotome.LuaPredicates</PackageId>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
         <Authors>Nanotome</Authors>
         <Product>LuaPredicates</Product>
         <Description>Parse collections in .NET with functions written in Lua.</Description>
