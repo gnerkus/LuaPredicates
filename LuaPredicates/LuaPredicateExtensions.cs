@@ -13,6 +13,7 @@ namespace LuaPredicates
 
             var scriptSource = File.ReadAllText(fileName, encoding);
             var state = new Lua();
+            state.DoString("import = function () end");
             state.DoString(scriptSource);
             return luaPredicate.GetFunction(state);
         }
@@ -21,6 +22,7 @@ namespace LuaPredicates
                 luaPredicate, string luaSource)
         {
             var state = new Lua();
+            state.DoString("import = function () end");
             state.DoString(luaSource);
             return luaPredicate.GetFunction(state);
         }
